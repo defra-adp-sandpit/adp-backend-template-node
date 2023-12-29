@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "adp-backend-template-node"
+  description: "Proof of concept FFD backend"
+  annotations:
+    github.com/project-slug: defra/adp-backend-template-node
+spec:
+  type: backend
+  lifecycle: alpha
+  owner: "group:default/adp-demo"
+  system: system:default/adp-demo-system
+  

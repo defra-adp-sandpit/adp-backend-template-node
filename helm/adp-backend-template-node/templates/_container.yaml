@@ -1,0 +1,2 @@
+{{- define "adp-backend-template-node.container" -}}
+{{- end -}}

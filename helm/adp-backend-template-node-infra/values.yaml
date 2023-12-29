@@ -1,0 +1,12 @@
+namespace: adp-demo
+namespaceQueues:
+  - name: backend
+    owner: 'no'
+    roleAssignments:
+      - roleName: 'QueueReceiver'
+
+postgres:
+  db:
+    name: backend 
+    charset: UTF8
+    collation: en_US.utf8

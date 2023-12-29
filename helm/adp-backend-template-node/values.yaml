@@ -1,0 +1,37 @@
+environment: development
+environmentCode:
+name: adp-backend-template-node
+namespace: adp-demo
+workstream: adp-demo
+image: adp-backend-template-node
+
+labels:
+  component: web
+
+appInsights:
+  connectionString:
+
+deployment: {}
+
+container:
+  requestMemory: 100Mi
+  requestCpu: 100m
+  limitMemory: 100Mi
+  limitCpu: 100m
+  port: 3000
+
+livenessProbe:
+  path: /healthz
+  port: 3000
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  failureThreshold: 3
+  timeoutSeconds: 5
+
+readinessProbe:
+  path: /healthy
+  port: 3000
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  failureThreshold: 3
+  timeoutSeconds: 5

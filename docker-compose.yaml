@@ -1,0 +1,10 @@
+services:
+  adp-backend-template-node:
+    build:
+      context: .
+      target: production
+    image: adp-backend-template-node
+    container_name: adp-backend-template-node
+    environment:
+      APPINSIGHTS_CLOUDROLE: adp-backend-template-node-local
+      APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}

@@ -1,0 +1,4 @@
+{{- include "adp-aso-helm-library.flexible-servers-db" (list . "adp-backend-template-node.flexible-servers-db") -}}
+
+{{- define "adp-backend-template-node.flexible-servers-db" }}
+{{ end -}}

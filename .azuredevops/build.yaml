@@ -1,0 +1,58 @@
+parameters:
+- name: deployFromFeature
+  displayName: "Deploy from Feature Branch"
+  type: boolean
+  default: false
+
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    exclude:
+      - test-output/*
+      - bin/*
+      - obj/*
+  drafts: false
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - "*"
+  paths:
+    exclude:
+      - test-output/*
+      - bin/*
+      - obj/*
+
+resources:
+  repositories:
+    - repository: DEFRA-ADPPipelineCommon
+      name: DEFRA/adp-pipeline-common
+      endpoint: DEFRA
+      type: github
+      ref: refs/heads/main
+
+extends:
+  template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
+  parameters:
+    projectName: "adp-backend-template-node"
+    serviceName: "adp-backend-template-node"
+    deployFromFeature: ${{ parameters.deployFromFeature }}
+    appBuildConfig:
+      appFrameworkType: "nodejs"    
+      projectPath: "./package.json"
+      manifestPath: "./package.json"
+      imageRepoName: "adp-backend-template-node"
+    appTestConfig:
+      testFilePath: "./docker-compose.test.yaml"
+    appDeployConfig:
+      filepath: "./appConfig"  
+      variableGroups: 
+        - adp-backend-template-node-snd1
+        - adp-backend-template-node-snd2
+        - adp-backend-template-node-snd3
+      variables:
+        - adp-backend-template-node-APPINSIGHTS-CONNECTIONSTRING
