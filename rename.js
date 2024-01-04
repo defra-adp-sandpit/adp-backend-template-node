@@ -3,7 +3,7 @@
 const fs = require('fs')
 const readline = require('readline')
 
-const originalDescription = 'description-of-project-goes-here'
+const originalDescription = 'Template to support rapid delivery of microservices for ADP Platform. It contains the configuration needed to deploy a simple Hapi Node server to the Azure Kubernetes Platform.'
 const originalNamespace = 'adp-demo'
 const originalProjectName = 'adp-backend-template-node'
 const originalHelmDir = './helm/adp-backend-template-node'
@@ -76,7 +76,7 @@ async function getInfraHelmFiles (projectName) {
 }
 
 function getRootFiles () {
-  return ['docker-compose.yaml', 'docker-compose.override.yaml', 'docker-compose.debug.yaml', 'docker-compose.test.yaml', 'docker-compose.test.watch.yaml', 'docker-compose.test.debug.yaml', 'package.json', 'package-lock.json']
+  return ['docker-compose.yaml', 'docker-compose.override.yaml', 'docker-compose.debug.yaml', 'docker-compose.test.yaml', 'docker-compose.test.watch.yaml', 'docker-compose.test.debug.yaml', 'package.json', 'package-lock.json', 'catalog-info.yaml']
 }
 
 function getCIpipelineFile(){
@@ -126,7 +126,7 @@ async function updateProjectName (projectName) {
 async function updateProjectDescription (projectName, description) {
   const helmDir = await getHelmDir(projectName)
   const infraHelmDir = await getInfraHelmDir(projectName)
-  const filesToUpdate = ['package.json', `${helmDir}/Chart.yaml`, `${infraHelmDir}/Chart.yaml`]
+  const filesToUpdate = ['package.json', `${helmDir}/Chart.yaml`, `${infraHelmDir}/Chart.yaml`, 'catalog-info.yaml']
 
   console.log(`Updating description from '${originalDescription}', to '${description}'. In...`)
   await Promise.all(filesToUpdate.map(async (file) => {
