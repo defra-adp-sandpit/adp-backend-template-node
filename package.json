@@ -1,7 +1,7 @@
 {
   "name": "adp-backend-template-node",
   "version": "0.1.4",
-  "description": "Proof of concept FFD backend",
+  "description": "Template to support rapid delivery of microservices for ADP Platform. It contains the configuration needed to deploy a simple Hapi Node server to the Azure Kubernetes Platform.",
   "homepage": "github.com?owner=defra&repo=adp-backend-template-node&organization=defra",
   "main": "app/index.js",
   "scripts": {
