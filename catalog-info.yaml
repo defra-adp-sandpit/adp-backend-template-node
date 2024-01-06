@@ -1,56 +1,19 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: "adp-backend-template-node"
-  description: |
-    Template to support rapid delivery of microservices for ADP Platform. It contains the configuration needed to deploy a simple Hapi Node server to the Azure Kubernetes Platform.
+  name: ${{values.component_id}}
+  {%- if values.description %}
+  description: ${{values.description}}
+  {%- endif %}
   annotations:
-    github.com/project-slug: DEFRA/adp-backend-template-node
-    dev.azure.com/project: DEFRA-FFC
-    dev.azure.com/build-definition: DEFRA.adp-backend-template-node
-    sonarqube.org/project-key: adp-backend-template-node
+    github.com/project-slug: ${{values.repo_project_slug}}
+    dev.azure.com/build-definition: DEFRA.${{values.project_name}}
+    sonarqube.org/project-key: ${{values.project_name}}
     grafana/dashboard-selector: "folderTitle == 'Managed Prometheus'"
-    backstage.io/techdocs-entity: component:default/adp-portal
-  tags:
-    - node
-    - service-bus
-    - private
-    - back-end
-    - database
 spec:
-  type: backend
-  lifecycle: beta
-  owner: "group:default/adp-demo"
-  system: adp-backend-template-node
-  dependsOn:
-    - "resource:default/adp-demo-backend-queue"
-    - "resource:default/adp-demo-backend-database"
----
-apiVersion: backstage.io/v1alpha1
-kind: Resource
-metadata:
-  name: adp-demo-backend-queue
-  description: Backend message queue
-  tags:
-    - azure-service-bus
-    - queue
-spec:
-  type: message-queue
-  owner: "group:default/adp-demo"
-  system: adp-frontend-template-node
-  dependsOn: 
-    - "resource:default/ADPINFSB01"
----
-apiVersion: backstage.io/v1alpha1
-kind: Resource
-metadata:
-  name: adp-demo-backend-database
-  description: Database for backend service.
-  tags:
-    - postgresql
-spec:
-  type: database
-  owner: "group:default/adp-demo"
-  system: adp-backend-template-node
-  dependsOn:
-    - "resource:default/adpdbsps01"
+  type: ${{ values.component_type }}
+  lifecycle: ${{ values.component_lifecycle }}
+  owner: ${{values.owner | dump}}
+  {%- if values.system %}
+  system: ${{ values.system }}
+  {%- endif %}

@@ -3,7 +3,7 @@
 set -e
 projectRoot="$(a="/$0"; a=${a%/*}; a=${a:-.}; a=${a#/}/; cd "$a/.." || return; pwd)"
 
-service="adp-backend-template-node"
+service="ffc-demo-claim-service"
 
 show_help() {
   echo "
@@ -51,20 +51,19 @@ compose() {
 (
   cd "${projectRoot}"
 
-  # Create test output folder
-  mkdir -p test-output
-
-  # Guarantee clean environment
+ # Guarantee clean environment
   compose down -v
+  docker-compose -f docker-compose.migrate.yaml -p "${service}-test" down -v
 
   # Ensure container images are up to date
   compose build
+  docker-compose -f docker-compose.migrate.yaml -p "${service}-test" run --rm database-up
 
   # Run tests
   if [ "${debug}" = "true" ]; then
     compose run --service-ports ${service} ${command}
   else
-    compose run --rm ${service} ${command}
+    compose run ${service} ${command}
   fi
 
   # Clean up
