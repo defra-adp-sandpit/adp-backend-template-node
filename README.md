@@ -93,7 +93,19 @@ scripts/test -w
 
 ## CI pipeline
 
-This service uses the ADP CI pipeline
+This service uses the ADP CI pipeline.
+
+### AppConfig - KeyVault References
+If the application uses `keyvault references` in `appConfig.env.yaml`, please make sure the variable to be added to keyvault is created in ADO Library variable groups and the reference for the variable groups and variables are provided in `build.yaml` like below.
+
+```
+variableGroups: 
+    - ${{ values.project_name }}-snd1
+    - ${{ values.project_name }}-snd2
+    - ${{ values.project_name }}-snd3
+variables:
+    - ${{ values.project_name }}-APPINSIGHTS-CONNECTIONSTRING
+```
 
 ## Licence
 

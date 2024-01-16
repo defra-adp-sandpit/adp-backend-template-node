@@ -50,9 +50,11 @@ extends:
     appDeployConfig:
       filepath: "./appConfig"  
       filetype: "yaml"
-      variableGroups: 
-        - adp-backend-template-node-snd1
-        - adp-backend-template-node-snd2
-        - adp-backend-template-node-snd3
-      variables:
-        - adp-backend-template-node-APPINSIGHTS-CONNECTIONSTRING
+      
+      # TO BE ADDED IF THERE ARE ANY KEYVAULT REFERENCES IN APP CONFIG
+      # variableGroups: 
+      #   - ${{ values.project_name }}-snd1
+      #   - ${{ values.project_name }}-snd2
+      #   - ${{ values.project_name }}-snd3
+      # variables:
+      #   - ${{ values.project_name }}-APPINSIGHTS-CONNECTIONSTRING
