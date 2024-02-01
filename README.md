@@ -6,7 +6,7 @@ Template to support rapid delivery of microservices for ADP Platform. It contain
 
 Create a new repository from this template and run `./rename.js` specifying the new name of the project and the description to use e.g.
 ```
-./rename.js ffc-demo-claim-service "Web frontend for demo workstream"
+node rename.js ffc-demo-claim-service "Web frontend for demo workstream"
 ```
 
 The script will update the following:
