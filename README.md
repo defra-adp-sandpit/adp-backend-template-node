@@ -9,6 +9,12 @@ Create a new repository from this template and run `./rename.js` specifying the 
 node rename.js ffc-demo-claim-service "Web frontend for demo workstream"
 ```
 
+To update scaffolder software template for `adp-software-template` repository, use the below command running `rename.js`
+
+```
+node rename.js '${{ values.project_name }}' '${{ values.project_description }}' true '${{ values.workstream }}'
+```
+
 The script will update the following:
 
 * `package.json`: update `name`, `description`, `homepage`
