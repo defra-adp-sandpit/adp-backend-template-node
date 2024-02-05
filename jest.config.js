@@ -7,13 +7,16 @@ module.exports = {
   coverageDirectory: 'test-output',
   coverageReporters: [
     'text-summary',
+    'cobertura',
     'lcov'
   ],
   coveragePathIgnorePatterns: [
     '<rootDir>/node_modules/',
     '<rootDir>/test-output/',
     '<rootDir>/test/',
-    '<rootDir>/jest.config.js'
+    '.*/__mocks__/.*',
+    '<rootDir>/jest.config.js',
+    '<rootDir>/rename.js'
   ],
   modulePathIgnorePatterns: [
     'node_modules'
