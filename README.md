@@ -20,7 +20,7 @@ The script will update the following:
 * `package.json`: update `name`, `description`, `homepage`
 * `docker-compose.yaml`: update the service name, `image` and `container_name`
 * `docker-compose.test.yaml`: update the service name, `image` and `container_name`
-* `docker-compose.override.yaml`: update the service name, `image` and `container_name`
+* `docker-compose.override.yaml, docker-compose.migrate.yaml`: update the service name, `image` and `container_name`
 * Rename `helm/adp-backend-template-node` and `helm/adp-backend-template-node-infra`
 * Updates the Chart name, description and templates in `helm/adp-backend-template-node/templates` and `helm/adp-backend-template-node-infra/templates`
 * Updates the project name in `.azuredevops/build.yaml`
@@ -70,9 +70,13 @@ docker-compose build
 
 Use Docker Compose to run service locally.
 
-```
-docker-compose up
-```
+* run migrations
+  * `docker-compose -f docker-compose.migrate.yaml run --rm database-up`
+* start
+  * `docker-compose up`
+* stop
+  * `docker-compose down` or CTRL-C
+
 
 ## Test structure
 

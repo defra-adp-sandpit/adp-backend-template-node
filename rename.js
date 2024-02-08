@@ -107,7 +107,9 @@ async function getInfraHelmFiles (projectName) {
 function getRootFiles () {
   return [
     'docker-compose.yaml',
+    'docker-compose.link.yaml',
     'docker-compose.override.yaml',
+    'docker-compose.migrate.yaml',
     'docker-compose.debug.yaml',
     'docker-compose.test.yaml',
     'docker-compose.test.watch.yaml',

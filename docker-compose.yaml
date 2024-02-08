@@ -5,6 +5,15 @@ services:
       target: production
     image: adp-backend-template-node
     container_name: adp-backend-template-node
+    depends_on:
+      - adp-backend-template-node-postgres
     environment:
       APPINSIGHTS_CLOUDROLE: adp-backend-template-node-local
       APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}
+
+  adp-backend-template-node-postgres:
+    image: postgres:11.4-alpine
+    environment:
+      POSTGRES_DB: adp-backend-template-node
+      POSTGRES_PASSWORD: ppp
+      POSTGRES_USERNAME: postgres
